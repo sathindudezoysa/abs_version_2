@@ -33,7 +33,7 @@ jobs:
         jpackage --name "ABS_2" `
           --input target `
           --main-jar $JAR_FILE.Name `
-          --main-class com.example.abs_version_2 `
+          --main-class com.example.abs_version_2.Launcher `
           --type app-image `
           --icon icon.png `
           --win-console
