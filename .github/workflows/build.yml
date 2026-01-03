@@ -1,0 +1,48 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build Fat JAR with Maven
+      run: mvn clean package
+
+    # This step creates the EXE installer
+    - name: Create EXE with jpackage
+      run: |
+        # Find the jar name automatically
+        $JAR_FILE = Get-ChildItem target/*.jar | Where-Object { $_.Name -notlike "*original*" } | Select-Object -First 1
+        
+        # Run jpackage
+        jpackage --name "ABS_2" `
+          --input target `
+          --main-jar $JAR_FILE.Name `
+          --main-class com.example.abs_version_2 `
+          --type app-image `
+          --icon icon.png `
+          --win-console
+
+    - name: Zip the Output
+      run: Compress-Archive -Path ABS_2 -DestinationPath ABS_2.zip
+
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-App
+        path: ABS_2.zip
