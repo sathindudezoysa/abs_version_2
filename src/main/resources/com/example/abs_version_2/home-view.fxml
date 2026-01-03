@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.abs_version_2.MainController"
+      style="-fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef);">
+
+    <!-- Modern Menu Bar -->
+    <MenuBar fx:id="change" >
+        <menus>
+            <Menu mnemonicParsing="false" text="File" style="-fx-text-fill: white;">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#change_time" text="Change Times" />
+                    <SeparatorMenuItem />
+                    <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help" style="-fx-text-fill: white;">
+                <items>
+                     <MenuItem fx:id="about" mnemonicParsing="false" onAction="#about" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <!-- Main Content Area -->
+    <StackPane VBox.vgrow="ALWAYS">
+        <GridPane hgap="40" vgap="20" alignment="CENTER">
+            <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+
+            <!-- Left Column - Text Content -->
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="15">
+                <VBox spacing="5">
+                    <Label text="Media Broadcasting Unit" style="-fx-text-fill: #2c3e50;">
+                        <font>
+                            <Font name="System Bold" size="28" />
+                        </font>
+                    </Label>
+                    <Label text="Bell System" style="-fx-text-fill: #3498db;">
+                        <font>
+                            <Font name="System Bold" size="22" />
+                        </font>
+                    </Label>
+                </VBox>
+
+                <VBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 30 0 0 0;">
+                    <VBox spacing="5">
+                        <Label text="Current Time" style="-fx-text-fill: #6c757d; -fx-font-size: 14;"/>
+                        <Label fx:id="clock_view" text="00:00:00"
+                               style="-fx-text-fill: #e74c3c; -fx-font-size: 56; -fx-font-weight: bold;"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Next Bell" style="-fx-text-fill: #6c757d; -fx-font-size: 14;"/>
+                        <Label fx:id="next_bell" text=""
+                               style="-fx-text-fill: #2c3e50; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Footer -->
+                <Label text="© Devil's Work" style="-fx-text-fill: #95a5a6; -fx-font-size: 12;"
+                       styleClass="footer-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            </VBox>
+
+            <!-- Right Column - Logo -->
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER">
+                <ImageView fitHeight="250" fitWidth="200" preserveRatio="true">
+                    <image>
+                        <Image url="@asserts/logo.png" />
+                    </image>
+                </ImageView>
+            </VBox>
+
+        </GridPane>
+    </StackPane>
+
+    <stylesheets>
+        <URL value="@css/styles.css" />
+    </stylesheets>
+</VBox>
