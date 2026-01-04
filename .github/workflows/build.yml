@@ -35,7 +35,7 @@ jobs:
           --main-jar $JAR_FILE.Name `
           --main-class com.example.abs_version_2.Launcher `
           --type app-image `
-          --icon icon.png `
+          --icon icon.ico `
           --win-console
 
     - name: Zip the Output
