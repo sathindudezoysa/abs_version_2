@@ -36,7 +36,6 @@ jobs:
           --main-class com.example.abs_version_2.Launcher `
           --type app-image `
           --icon icon.ico `
-          --win-console
 
     - name: Zip the Output
       run: Compress-Archive -Path ABS_2 -DestinationPath ABS_2.zip
